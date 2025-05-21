@@ -1,199 +1,247 @@
 # 19CS301-Module-12
-EX: 6.1   POLYMORPHISM
+EX: 12.1   Stack using linked list (Display, Peek and Pop)
+
 
 ### AIM: 
 
-To Create two specific classes- Beans and Mango. Along with that, create a generic function that tells us the type and color of the object we pass. Mind you, since we have passed only “obj” through it, this obj can be any object.
-
+To insert a few elements into a stack and check whether the stack is full or not.
 
 ### ALGORITHM:
-Step1: create class Beans and def a function type and color
+Step 1: Define a class Stack with methods __init__, is_full, push, and display.
 
-Step 2: create a class Mango and def a function type and color
+Step 2: In __init__, initialize the stack list and define the maximum size.
 
-Step3: def a function func
+Step 3: In is_full, check whether the number of elements has reached the maximum size.
 
-Step 4: call the objects and execute the program
+Step 4: In push, insert elements into the stack if it's not full.
+
+Step 5: In display, print the current elements of the stack.
+
+Step 6: Create a Stack object and push a few elements.
+
+Step 7: Check and display whether the stack is full.
+
+
 
 ### PROGRAM:
 ```
-class Beans ():
-    def type(self):   
-          print("Vegetable")
-    def color(self):
-          print("Green")
-class Mango:
-   def type(self):
-          print("Fruit")
-   def color(self):
-         print("Yellow")
-   def func(obj):
-         obj.type()
-         obj.color()
-         obj_beans = Beans()
-         obj_mango = Mango()
-         func(obj_beans)
-         func(obj_mango)
+class Stack:
+    def __init__(self, max_size):
+        self.stack = []
+        self.max_size = max_size
+
+    def push(self, item):
+        if not self.is_full():
+            self.stack.append(item)
+
+    def is_full(self):
+        return len(self.stack) == self.max_size
+
+
+# Create a stack with a maximum size of 5
+s = Stack(5)
+
+# Insert a few elements (less than 5)
+s.push(10)
+s.push(20)
+s.push(30)
+
+# Check if the stack is full and print result
+if s.is_full():
+    print("Stack is full")
+else:
+    print("Stack is not full")
+
 ```
 ### OUTPUT:
-![image](https://github.com/user-attachments/assets/b41a3e12-896b-4f6c-a9b2-19045a5088f9)
+![image](https://github.com/user-attachments/assets/32e93e2a-b0a8-4eaf-b4de-f42c6ab83c61)
 
 
 ### RESULT: 
 
 Thus, the program has been successfully executed.
 
-EXP.No: 6.b OPERATOR OVERLOADING
+EXP.No: 12.2 Stack using linked list (Push and all operations)
 
 ### AIM: 
 
-write a python program to overload less than operator
-
+To get 3 inputs from the user, insert them into a stack, and print each element along with its respective index value.
 
 ###ALGORITHM:
-Step1 :create class A and def init	 
+Step 1: Initialize an empty list to represent the stack.
 
-Step2: def it	with a condition if self.a < o.a 
+Step 2: Use a loop to get 3 inputs from the user.
 
-Step 3: call the function and execute the program.
+Step 3: Append each input into the stack.
 
+Step 4: Use a loop with enumerate() to print each element with its index value.
 
 ### PROGRAM:
 ```
-class A :
-     def     init (self,a):
-             self.a=a
-     def     lt (self,o):
-              if self.a < o.a :
-                   return "ob1 is less than ob2"
-              else:
-                   return "ob2 is less than ob1"
-ob1 = A(2)
-ob2 = A(3)
-print(ob1<ob2)
+stack = []
+stack.append(input("Insert the first element:"))
+stack.append(input("\nInsert the second element:"))
+stack.append(input("\nInsert the third element:"))
+
+print('\nInitial stack: ' + str(stack))
+
+for i in range(len(stack)):
+    print(i,end=" ")
+    print(stack[i])
+
+
 ```
 ###OUTPUT:
 
 
-![image](https://github.com/user-attachments/assets/dae03d17-1004-424e-a179-ef62fd2681bd)
+![image](https://github.com/user-attachments/assets/06e3ab0a-0dcf-4488-88a5-34a56dec25a5)
+
 
 
 
 ###RESULT: 
 
-Thus, the program has been successfully executed.
+The program successfully accepts 3 user inputs, inserts them into a stack, and prints each element along with its corresponding index value.
 
 
-EX: 6.3 ABSTRACT CLASS METHOD
+EX: 12.3  Queue using linked list (Display, Peek and Pop)
 
 ### AIM: 
 
-To create an abstract method feed() in an abstract class Animal and implement it in subclasses Lion, Panda, and Snake.
+To list all candidates who appeared for the interview and find the slot numbers of both candidates named "Ram".
 
 ### ALGORITHM:
 
-Step 1: Import the ABC and abstractmethod from the abc module.
+Step 1: Create a list of candidate names representing their slot order.
 
-Step 2: Define the abstract class Animal with an abstract method feed().
+Step 2: Traverse the list using a loop.
 
-Step 3: Create the subclasses Lion, Panda, and Snake, each implementing the feed() method.
+Step 3: Compare each name (case-insensitive) to "Ram".
 
-Step 4: Create objects for each subclass.
+Step 4: If matched, store and display the corresponding slot number(s).
 
-Step 5: Call the feed() method using each object.
-
-Step 6: Execute the program.
 
 ### PROGRAM:
 
 
-```from abc import ABC
-from abc import ABC, abstractmethod
-class Animal(ABC): # Inherit from ABC(Abstract base class)
-    @abstractmethod  # Decorator to define an abstract method
-    def feed(self):
-        pass
-class Lion(Animal):
-    #Add abstract methos implementation
-    def feed(self):
-        print("Feeding a lion with raw meat!")
+```
+interview = []
 
-class Panda(Animal): 
-    def feed(self): 
-        print("Feeding a panda with some tasty bamboo!") 
+interview.append("Ram")
+interview.append("Priya")
+interview.append("John")
+interview.append("Vignesh")
+interview.append("Reshma")
+interview.append("Ram")
+interview.append("Meeran")
+interview.append("Sai kumar")
+print("List of candidates appeared for the interview:")
+print(interview)
+print("Display the slot numbers of the candidates with same name: ")
+print(interview.index("Ram",0,4))
+print(interview.index("Ram",5,7))
 
-class Snake(Animal): 
-    def feed(self): 
-        print("Feeding a snake with mice!")
-zoo = [Lion(), Panda(), Snake()]
 
-for animal in zoo:
-    animal.feed()
 ```
 ### OUTPUT:
 
-![image](https://github.com/user-attachments/assets/29bc86a1-d46f-44e1-b01e-0ac8dd835e0e)
+![image](https://github.com/user-attachments/assets/224c34e7-aef6-4da2-b879-31e49931b3bc)
 
 
 
 ### RESULT: 
 
-Thus, the program has been successfully executed.
+The program displays the list of all interview candidates and correctly identifies and displays the slot numbers of both "Ram" who appeared for the interview.
 
-EXP.No: 6.4     ENCAPSULATION
+
+EXP.No: 12.4 Queue using linked list (Enqueue and all operations)
 
 
 ### AIM:
 
-To implement encapsulation using private members in a class Class1Students with private variables name and age, and to access/modify them using getter and setter methods.
+To get the first 3 tasks of the day from the boss’s personal assistant and print them along with their index order.
 
 ###ALGORITHM: 
 
-Step 1: Define the class Class1Students with private variables __name and __age.
+Step 1: Initialize an empty list to store tasks.
 
-Step 2: Define the constructor __init__ to initialize name and age.
+Step 2: Use a loop to get 3 task inputs from the user.
 
-Step 3: Create the speak() method to print the values.
+Step 3: Append each task to the list.
 
-Step 4: Define getter methods get_name() and get_age() to access private variables.
-
-Step 5: Define setter methods set_name() and set_age() to modify private variables.
-
-Step 6: Create an object and use the speak() method to display original values.
-
-Step 7: Use setter methods to modify the values and invoke speak() again to show updated values.
-
-Step 8: End the program.
+Step 4: Use a loop with enumerate() to print the tasks along with their index.
 
 ###PROGRAM:
 ```
-class Class1Students:
-    name="Michael"
-    age=40
-    def __init__(self,name,age):
-        self.name=name
-        self.age=age
-    def speak(self):
-        print(f"my name is {self.name}, and I am {self.age} years old.")
-    def set_nameage(self,x,y):
-        self.name=x
-        self.age=y
-s1=Class1Students("Michael",40)
-s2=Class1Students("John",25)
-s2.name="John"
-s1.speak()
-s2.set_nameage=("John",25)
-s2.speak()
+queue= []
+queue.append(input("Task_1: "))
+queue.append(input("\nTask_2: "))
+queue.append(input("\nTask_3: "))
+print('\nTask details: ' + str(queue))
+
+for i in range(len(queue)):
+    print(i, end=" ")
+    print(queue[i])
+
 ```
 ### OUTPUT:
  
-![image](https://github.com/user-attachments/assets/360bb4d5-6d33-499f-9bb8-ed716ad57d09)
+![image](https://github.com/user-attachments/assets/93ca3293-33a4-4979-ba04-4fbb7f810513)
 
- 
 
 ### RESULT: 
 
-Thus, the program has been successfully executed
+The program successfully accepts the first 3 tasks from the boss’s personal assistant and displays them in index order for the secretary’s reference.
+
+
+
+EXP.No: 12.5 ASSESSMENT EXAM-SEB
+
+
+### AIM:
+
+To simulate monthly storage of rice bags in a warehouse, track sales, and determine which month's rice bags are ready for sale and which ones were recently added.
+
+
+###ALGORITHM: 
+
+Step 1: Create a list to store rice bags month-wise.
+
+Step 2: Each month, 250 rice bags are added to the warehouse.
+
+Step 3: Simulate sales by removing rice bags (FIFO method).
+
+Step 4: Determine the earliest month with remaining stock (next for sale).
+
+Step 5: Identify the most recent month of storage.
+
+
+
+###PROGRAM:
+```
+queue = []
+
+queue.append('Apr_RB4_250')
+queue.append('May_RB5_250')
+queue.append('June_RB6_250')
+
+print(queue)
+print("\nNext rice bag ready for sale .... Apr_RB4_250")
+
+print("\nNew rice bag .... June_RB6_250")
+
+```
+### OUTPUT:
+
+ ![image](https://github.com/user-attachments/assets/318861a9-402f-451c-af04-20dbd300d7a0)
+
+
+### RESULT: 
+
+The program correctly identifies the month whose rice bags are next ready for sale and the month in which rice bags were most recently added to the warehouse.
+
+
+
 
 
 
